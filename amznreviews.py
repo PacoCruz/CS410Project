@@ -68,7 +68,7 @@ if __name__ == "__main__":
     save_to_csv(enrich_df, tempPath, 'original_merge.csv')
 
     # Load with
-    enrich_df = pd.read_csv(tempPath, 'original_merge.csv')
+    enrich_df = pd.read_csv(os.path.join( tempPath, 'original_merge.csv'))
 
     # Construct new features
     sentences = enrich_df['reviewText']
