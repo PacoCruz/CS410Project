@@ -7,3 +7,4 @@
 .idea/workspace.xml
 .idea/other.xml
 *.csv
+gzip_data/.DS_Store
