@@ -4,7 +4,7 @@ This project started to fulfill the Technology Project requirement of the **CS41
 
 With support from my TA Ismini Lourentzou, I decided to explore the relationship between the sentiment inferred on reviews by Amazon users and the price of the goods purchased, under the hypothesis that review length and their tone are predictors of product price. It is a very naïve expectation based on the hypothesis that a high price would command a longer explanation, and that higher prices generally bring more positive reviews.
 
-To explore this hypothesis, I used the [datasets](http://jmcauley.ucsd.edu/data/amazon/) made available by [Julian McAuley](julian.mcauley@gmail.com). The website above provides a detailed explanation of the data schema and how to parse the files for use in applications. Since the files are quite large, for the purpose of this course I will make them temporarily available in a [publicly available share](https://1drv.ms/f/s!AvRNoFBBmBYel6c5JET759VwYtiK0g) for replicating and grading my work.
+To explore this hypothesis, I used the [datasets](http://jmcauley.ucsd.edu/data/amazon/) made available by [Julian McAuley](julian.mcauley@gmail.com). The website above provides a detailed explanation of the data schema and how to parse the files for use in applications. Since the files are quite large, for the purpose of this course I will make them temporarily available in a [publicly available share](https://uofi.box.com/s/lmutpr56zevns6q4tx9rl1r4dr3t9o3k) for replicating and grading my work.
 ## Datasets Description
 The data I am using are split into two files:
 
