@@ -78,7 +78,7 @@ The scope and output of this report is limited by time constraints and most impo
 Under these constraints, most of the effort was applied to building the dataset and applying the sentiment analysis to the reviews texts.
 
 ### The Results
-![alt text](data_out/corplotR.png?raw=True "Logo Title Text 1")
+![Correlogram of Amazon Reviews Features](data_out/corplotR.png?raw=True "Correlogram of Amazon Reviews")
 
 
 
