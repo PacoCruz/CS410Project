@@ -97,7 +97,13 @@ There is no strong correlation between any pair of features in our sentiment ann
 
 Considering the statistical criteria used on classifying correlations, all these results fall under the category of 'Weak' (0.2 - 0.4) or 'Extremely Weak' (0 - 0.2), except for the relationship between `sentiment` and `ratingDelta` which is considered 'Medium' at 0.48 (and by extension, to any feature related to `helpfulness` from which is derived).
 
-After this result - which came consistently over the `Musical Instruments`, `Automotive`, and `Food` categories - it became clear that the original hypothesis was not sustained, and that there is no discernible difference
+After this result - which came consistently over the `Musical Instruments`, `Automotive`, and `Food` categories - it became clear that the original hypothesis was not sustained, and that there is no discernible relationship between the features part of my original hypothesis.
+## Further Research
+The fact that the only evidence of higher than weak correlation between a pair of features is found between `sentiment` and `ratingDelta`, is representative of the performance of the sentiment classifier. Since `ratingDelta` is derived from `overall`, a direct indicator of the satisfaction of the reviewer with the product, it is only natural that there is evidence of relationship between them.
+
+This relationship opens the opportunity to understanding why this relationship is still moderate and might be related to the performance of the Sentiment Analyzer used in this Exploration: `NLTK's VADER`. Interestingly, in one of my initial experimentations I used Azure's Cognitive Services API to perform sentiment analysis on a sample of the reviews, and the    correlation coefficient for this pair of features was 0.32.
+
+![Pearson Correlation of Sentiment Analysis using Azure Cognitive Services](explorations/corplotRAzure.png?raw=True "Azure Cognitive Services")
 
 
 
