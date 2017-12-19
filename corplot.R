@@ -2,7 +2,7 @@
 install.packages('corrplot')
 library(corrplot)
 library(readr)
-datawork <- read_csv("CS410Project/data_out/all_features_with_sentiment_merge.csv", 
+datawork <- read_csv("./data_out/all_features_with_sentiment_merge.csv", 
                      col_types = cols(asin = col_skip(), avgWordLength = col_skip(), 
                                       expresiveness = col_double(), helpful = col_skip(), 
                                       overall = col_double(), price = col_double(), 
