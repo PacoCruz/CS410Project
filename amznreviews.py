@@ -65,11 +65,11 @@ if __name__ == "__main__":
 
     # if debugging:
     save_to_csv(enrich_df, os.path.join(os.path.expanduser('~'), 'CS410Project', 'temp_files'),
-                    'original_merge.csv')
+                'original_merge.csv')
 
     # Load with
     enrich_df = pd.read_csv(os.path.join(os.path.expanduser('~'), 'CS410Project', 'temp_files'),
-                    'original_merge.csv')
+                            "original_merge.csv")
 
     # Construct new features
     sentences = enrich_df['reviewText']
@@ -123,7 +123,6 @@ if __name__ == "__main__":
                            ratingDelta, priceDelta], axis=1)
     enrich_df.dropna(inplace=True)
 
-
     if debugging:
         save_to_csv(enrich_df, os.path.join(os.path.expanduser('~'), 'CS410Project', 'temp_files'),
                     'all_features_merge.csv')
@@ -148,7 +147,7 @@ if __name__ == "__main__":
         # Load with
         # enrich_df = pd.read_csv('/Users/pacoc/CS410Project/temp_files/all_features_with_sentiment_merge.csv')
 
-# Output
+    # Output
     save_to_csv(enrich_df, outPath, 'all_features_with_sentiment_merge.csv')
     sns.set(font_scale=0.7)
     corr_plot = sns.heatmap(enrich_df.corr(), annot=True, cbar=False, fmt='.2f')
