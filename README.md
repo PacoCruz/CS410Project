@@ -78,7 +78,12 @@ The scope and output of this report is limited by time constraints and most impo
 Under these constraints, most of the effort was applied to building the dataset and applying the sentiment analysis to the reviews texts.
 
 ### The Results
-![Correlogram of Amazon Reviews Features](data_out/corplotR.png?raw=True "Correlogram of Amazon Reviews")
+The following visualization provides a quick view of the result of this exploration.
+![Correlogram of Amazon Reviews Features](data_out/corplotR.png?raw=True "Correlogram of Amazon Reviews Features")
+
+There is no strong correlation between any pair of features in our sentiment annotated dataset. This result doesn't support the initial hypothesis of an underlying relationship between text reviews sentiment and length of the review or 
+
+
 
 
 
