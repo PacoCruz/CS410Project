@@ -68,8 +68,8 @@ if __name__ == "__main__":
                 'original_merge.csv')
 
     # Load with
-    enrich_df = pd.read_csv(os.path.join(os.path.expanduser('~'), 'CS410Project', 'temp_files'),
-                            "original_merge.csv")
+    enrich_df = pd.read_csv(os.path.join(os.path.expanduser('~'), 'CS410Project',
+                                         'temp_files', 'original_merge.csv'))
 
     # Construct new features
     sentences = enrich_df['reviewText']
