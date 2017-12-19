@@ -70,12 +70,18 @@ The datasets will need to be preprocessed before any analysis is done to ensure 
 - `avgWordLength`: calculated as the quotient of `reviewWLength` divided by `reviewWords`. It was intended to provide a measurement of sophistication in expression (e.g.: using longer words).
 - `expressiveness`: calculated as the ratio of number of words in a review divided by the average length in word of all reviews. Also intended as a normalization of review length relative to other reviewers.
 - `ratingDelta` and `priceDelta` are like `expresiveness` a normalization of rating and price relative to their respective averages.
-- `usefulness`: since the `helpful` field as available is a pair of values indicating how many of the review viewers have voted it as useful, it needs to be transformed into a numerical feature. It is represented as the ratio of helpful=rated reviews to the total of rated reviews by the community.
+- `usefulness`: since the `helpful` field as available is a pair of values indicating how many of the review viewers have voted it as useful, it needs to be transformed into a numerical feature. It is represented as the ratio of reviews rated as helpful to the total of rated reviews by the community.
 
 ## Exploration
-The scope and output of this report is limited by time constraints and most importantly, my learning the use of the tools required as I was building the project. Not having a Computer Science background meant having to learn `Pandas` for data wrangling, `NLTK` for sentiment analysis, JSON manipulation for conforming the output to the expected input by the Azure Sentiment Analysis API, and in general commonplace practices in Data Exploration that I was unfamiliar with.
+The scope and output of this report is limited by time constraints and most importantly, my learning the use of the tools required as I was building the project. Not having a Computer Science background meant having to learn `Pandas` for data wrangling, `NLTK` for sentiment analysis, JSON manipulation for conforming the output to the expected input by the Azure Sentiment Analysis API, `whoosh` for indexing and searching a corpus, and in general commonplace practices in Data Exploration that I was unfamiliar with.
 
-Under these constraints, 
+Under these constraints, most of the effort was applied to building the dataset and applying the sentiment analysis to the reviews texts.
+
+### The Results
+![alt text](data_out/corplotR.png?raw=True "Logo Title Text 1")
+
+
+
 
 
 # Appendix
