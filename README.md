@@ -81,6 +81,10 @@ Under these constraints, most of the effort was applied to building the dataset 
 The following visualization provides a quick view of the result of this exploration.
 ![Correlogram of Amazon Reviews Features](data_out/corplotR.png?raw=True "Correlogram of Amazon Reviews Features")
 
+I used the Pearson Correlation coefficient to indicate the relationship between pairs of features, given as in the following equation:
+
+![Pearson Correlation](explorations/Pearson.png?raw=True "Pearson Correlation")
+
 There is no strong correlation between any pair of features in our sentiment annotated dataset. This result doesn't support the initial hypothesis of an underlying relationship between text reviews sentiment and length of the review or product price. The strongest correlation values are summarized below:
 
 |  | sentiment | usefulness | ratingDelta | expressiveness | priceDelta |
@@ -91,7 +95,14 @@ There is no strong correlation between any pair of features in our sentiment ann
 | expressiveness | 0.15 | 0.27 | 0 | 1 | 0.16 |
 | priceDelta | 0 | 0.13 | 0 | 0.16 | 1 |
 
-Considering the statistical criteria used on classifying correlations, all these results fall under the category of 'Weak' (0.2 - 0.4) or 'Extremely Weak' (0 - 0.2), except for the relationship between `sentiment` and `ratingDelta` which is considered `Medium` at 0.48 (and by extension, to any feature related to `helpfulness` from which is derived).
+Considering the statistical criteria used on classifying correlations, all these results fall under the category of 'Weak' (0.2 - 0.4) or 'Extremely Weak' (0 - 0.2), except for the relationship between `sentiment` and `ratingDelta` which is considered 'Medium' at 0.48 (and by extension, to any feature related to `helpfulness` from which is derived).
+
+After this result - which came consistently over the `Musical Instruments`, `Automotive`, and `Food` categories - it became clear that the original hypothesis was not sustained, and that there is no discernible difference
+
+
+
+
+
 
 
 
