@@ -101,23 +101,52 @@ After this result - which came consistently over the `Musical Instruments`, `Aut
 ## Further Research
 The fact that the only evidence of higher than weak correlation between a pair of features is found between `sentiment` and `ratingDelta`, is representative of the performance of the sentiment classifier. Since `ratingDelta` is derived from `overall`, a direct indicator of the satisfaction of the reviewer with the product, it is only natural that there is evidence of relationship between them.
 
-This relationship opens the opportunity to understanding why this relationship is still moderate and might be related to the performance of the Sentiment Analyzer used in this Exploration: `NLTK's VADER`. Interestingly, in one of my initial experimentations I used Azure's Cognitive Services API to perform sentiment analysis on a sample of the reviews, and the    correlation coefficient for this pair of features was 0.32.
+This relationship opens the opportunity to understanding why this relationship is still moderate and might be related to the performance of the Sentiment Analyzer used in this Exploration: `NLTK's VADER`. Interestingly, in one of my initial experimentations I used Azure's Cognitive Services (ACS) API to perform sentiment analysis on a sample of the reviews, and the correlation coefficient for this pair of features was 0.32.
 
 ![Pearson Correlation of Sentiment Analysis using Azure Cognitive Services](explorations/corplotRAzure.png?raw=True "Azure Cognitive Services")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+The difference itself is no as interesting as the fact that the VADER sentiment analysis uses rules inferred from a finite and reduced number of words to assign a sentiment value, and the ACS use a trained model based on a curated and annotated corpus. That the performance of a statistical/deterministic Analyzer matches that of an ML-trained commercial model indicates either a glaring oversight in my first attempt at using ACS, or the result of a model not flexible enough for this type of text content. I will focus my analysis after this course ends on understanding what are the factors that may be influencing this result.
 
 # Appendix
-## 1. Discarded Explorations.
+## Discarded Explorations
+### 1. `whoosh` Indexer and Searcher
+
+Per course staff suggestion, I researched the implementation and use of the Python [`whoosh`](https://pypi.python.org/pypi/Whoosh/) package to experiment and familiarize myself with indexing and searching platforms. While I was not able to integrate this component as planned in the original, more ambitious project scope, It helped me experiment and solidify the topics covered in class, specifically the creation of index and postings files, ranking functions, and parsing of queries and documents to provide a set of ranked relevant results.
+```python
+# Open the existing index
+import whoosh
+import whoosh.index as index
+ix = index.open_dir('/Users/pacoc/data_out/indexdir', indexname='small_automotive')
+
+from whoosh.qparser import QueryParser
+
+qp = QueryParser("title", schema=ix.schema)
+q = qp.parse('start')
+
+with ix.searcher() as s:
+   results = s.search(q)
+
+   for line in results:
+       print(line['title'])
+```
+Other areas of discovery using `whoosh` were the ability of filtering results and applying facets to collapse/group results. I will continue my learning in this area to better apply the topics discovered in class.
+### 2. Azure Cognitive Services
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+text
