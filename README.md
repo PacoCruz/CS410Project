@@ -88,7 +88,7 @@ I used the Pearson Correlation coefficient to indicate the relationship between 
 There is no strong correlation between any pair of features in our sentiment annotated dataset. This result doesn't support the initial hypothesis of an underlying relationship between text reviews sentiment and length of the review or product price. The strongest correlation values are summarized below:
 
  | sentiment | usefulness | ratingDelta | expressiveness | priceDelta 
- |------------|-----------|--------------|---------------|------------
+ -|------------|-----------|--------------|---------------|------------
 sentiment | 1 | 0 | 0.48 | 0.15 | 0 
 usefulness | 0 | 1 | 0 | 0.27 | 0.13 
 ratingDelta | 0.48 | 0 | 1 | 0 | 0 
