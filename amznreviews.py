@@ -44,8 +44,9 @@ if __name__ == "__main__":
     debugging = False
     inReviewsFile = 'reviews_Musical_Instruments.json.gz'
     inMetadataFile = 'meta_Musical_Instruments.json.gz'
-    outPath = os.path.join(os.path.expanduser('~'), 'CS410Project', 'data_out')
-    inPath = os.path.join(os.path.expanduser('~'), 'CS410Project', 'gzip_data')
+    outPath = os.path.abspath('data_out')
+    inPath = os.path.abspath('gzip_data')
+    tempPath = os.path.abspath('temp_files')
     if len(sys.argv) == 2:
         inReviewsFile = sys.argv[1]
         inMetadataFile = sys.argv[2]
@@ -64,12 +65,10 @@ if __name__ == "__main__":
     enrich_df.dropna(inplace=True)
 
     # if debugging:
-    save_to_csv(enrich_df, os.path.join(os.path.expanduser('~'), 'CS410Project', 'temp_files'),
-                'original_merge.csv')
+    save_to_csv(enrich_df, tempPath, 'original_merge.csv')
 
     # Load with
-    enrich_df = pd.read_csv(os.path.join(os.path.expanduser('~'), 'CS410Project',
-                                         'temp_files', 'original_merge.csv'))
+    enrich_df = pd.read_csv(tempPath, 'original_merge.csv')
 
     # Construct new features
     sentences = enrich_df['reviewText']
@@ -124,8 +123,7 @@ if __name__ == "__main__":
     enrich_df.dropna(inplace=True)
 
     if debugging:
-        save_to_csv(enrich_df, os.path.join(os.path.expanduser('~'), 'CS410Project', 'temp_files'),
-                    'all_features_merge.csv')
+        save_to_csv(enrich_df, tempPath, 'all_features_merge.csv')
         # Load with
         # enrich_df = pd.read_csv('/Users/pacoc/CS410Project/temp_files/all_features_merge.csv')
 
@@ -142,8 +140,7 @@ if __name__ == "__main__":
     enrich_df['sentiment'] = sentiment
 
     if debugging:
-        save_to_csv(enrich_df, os.path.join(os.path.expanduser('~'), 'CS410Project', 'temp_files'),
-                    'all_features_with_sentiment_merge.csv')
+        save_to_csv(enrich_df, tempPath, 'all_features_with_sentiment_merge.csv')
         # Load with
         # enrich_df = pd.read_csv('/Users/pacoc/CS410Project/temp_files/all_features_with_sentiment_merge.csv')
 
