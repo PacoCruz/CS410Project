@@ -111,7 +111,7 @@ The difference itself is no as interesting as the fact that the VADER sentiment 
 ## Discarded Explorations
 ### 1. `whoosh` Indexer and Searcher
 
-Per course staff suggestion, I researched the implementation and use of the Python [`whoosh`](https://pypi.python.org/pypi/Whoosh/) package to experiment and familiarize myself with indexing and searching platforms. While I was not able to integrate this component as planned in the original, more ambitious project scope, It helped me experiment and solidify the topics covered in class, specifically the creation of index and postings files, ranking functions, and parsing of queries and documents to provide a set of ranked relevant results.
+Per course staff suggestion, I researched the implementation and use of the Python [`whoosh`](https://pypi.python.org/pypi/Whoosh/) package to experiment and familiarize myself with indexing and searching platforms. While I was not able to integrate this component as planned in the original, more ambitious project scope, It helped me experiment and solidify the topics covered in class, specifically the creation of index and postings files, ranking functions, and parsing of queries and documents to provide a set of ranked relevant results. Here is an example that summarizes how to search a previously built index:
 ```python
 # Open the existing index
 import whoosh
@@ -131,4 +131,79 @@ with ix.searcher() as s:
 ```
 Other areas for of discovery using `whoosh` were the ability of filtering results and applying facets to collapse/group results. I will continue my learning in this area to better apply the topics discovered in class.
 ### 2. Azure Cognitive Services - Text Sentiment Analysis
-Before using `NLTK` I performed some sentiment analysis on samples of the dataset using Microsoft's Azure Cognitive Services API. While I finally decided  not to use it for this project due to being a commercial service with a significant cost for the size of the datasets used in this project, I was able to use its Free Tier offer for experimentation.
+Before using `NLTK` I performed some sentiment analysis on samples of the dataset using Microsoft's Azure Cognitive Services API. While I finally decided  not to use it for this project due to being a commercial service with a significant cost for the size of the datasets used in this project, I was able to use its Free Tier offer for practice.
+
+The services include AI services for Vision, Knowledge, Speech, or Language among other options. In particular, for Language includes a Linguistic Analysis API that I didn't explore, and a [Text Analytics](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/) API through a REST API, is able to analyze a text and to provide:
+- **Sentiment Analysis**: The Sentiment Analysis API evaluates text input and returns a sentiment score for each document, ranging from 0 (negative) to 1 (positive). This capability is useful for detecting positive and negative sentiment in social media, customer reviews, and discussion forums. Models and training data are provided by the service.
+- **Key Phrase Extraction**: The Key Phrase Extraction API evaluates unstructured text, and for each JSON document, returns a list of key phrases. This capability is useful to quickly identify the main points in a collection of documents.
+- **Language Detection**: The Language Detection API evaluates text input and for each document returns language identifiers with a score indicating the strength of the analysis, recognizing up to 120 languages. The results of this analysis can be parsed to determine which language is used in the input document. The response also returns a score which reflects the confidence of the model (a value between 0 and 1).
+Using the Azure Sentiment Analyzer, I was able to annotate with sentiment a set of documents around 100 times faster than using VADER. A representative excerpt of the code I used follows below; it can be easily adapted to read the intermediate files created by the `amznreviews.py` module:
+
+```python
+import pandas as pd
+import json
+import http.client, urllib.request, urllib.parse, urllib.error, base64
+
+# accessKey string value for Azure Text Analytics API.
+
+accessKey = '****************************'
+
+# Azure regional information
+uri = 'westus.api.cognitive.microsoft.com'
+path = '/text/analytics/v2.0/sentiment'
+
+def GetSentiment(documents):
+    "Gets the sentiments for a set of documents and returns the information."
+
+    headers = {'Ocp-Apim-Subscription-Key': accessKey}
+    conn = http.client.HTTPSConnection(uri)
+    body = json.dumps(documents)
+    conn.request("POST", path, body, headers)
+    response = conn.getresponse()
+    return response.read()
+
+
+# Load the dataframe from csv
+docstoindex = pd.read_csv('/Users/pacoc/data_out/auto_sample_1000_nostrcast.csv', dtype='str')
+# Drop columns not supported by the sentiment analysis API
+docstoindex.drop(columns=['asin', 'helpful', 'overall'
+    , 'reviewTime', 'title'
+    , 'price', 'brand', 'reviewLength'
+    , 'reviewWords', 'avgWordLength'
+    , 'expresiveness', 'ratingDelta'
+    , 'priceDelta'], inplace=True)
+
+# Rename index and munge to comply with Azure Text Analytics API
+docstoindex.index.rename('id', inplace=True)
+docstoindex.rename(columns={'reviewText': 'text'}
+                   , inplace=True)
+docstoindex['language'] = 'en'
+
+# Prepare to export to json
+docstoindex.reset_index(inplace=True)
+docstoindex['id'] = docstoindex['id'].astype('str')
+docstoindex = docstoindex[['language', 'id', 'text']]
+d = {'documents': docstoindex.to_dict(orient='records')}
+
+print('Please wait a moment for the results to appear.\n')
+
+result = GetSentiment(d)
+
+# Use the following line for debugging, validation.
+#print(json.dumps(json.loads(result), indent=4))
+
+# Bring JSON into pandas dataframe
+from pandas.io.json import json_normalize
+datajson = json.loads(result)
+datajson = json_normalize(datajson['documents'])
+
+# Save to csv for later use
+datajson.to_csv('/Users/pacoc/data_out/dataframeSentiment_2ndround.csv')
+
+# Merge with reviews and save
+sentiment = pd.Series(datajson['score'])
+reviews = pd.read_csv('/Users/pacoc/data_out/auto_sample_1000_nostrcast.csv')
+reviews['sentiment'] = sentiment
+reviews.to_csv('/Users/pacoc/data_out/reviews_with_sentiment_ready_2ndround.csv')
+```
+
