@@ -129,24 +129,6 @@ with ix.searcher() as s:
    for line in results:
        print(line['title'])
 ```
-Other areas of discovery using `whoosh` were the ability of filtering results and applying facets to collapse/group results. I will continue my learning in this area to better apply the topics discovered in class.
-### 2. Azure Cognitive Services
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-text
+Other areas for of discovery using `whoosh` were the ability of filtering results and applying facets to collapse/group results. I will continue my learning in this area to better apply the topics discovered in class.
+### 2. Azure Cognitive Services - Text Sentiment Analysis
+Before using `NLTK` I performed some sentiment analysis on samples of the dataset using Microsoft's Azure Cognitive Services API. While I finally decided  not to use it for this project due to being a commercial service with a significant cost for the size of the datasets used in this project, I was able to use its Free Tier offer for experimentation.
