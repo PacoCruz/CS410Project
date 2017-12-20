@@ -190,7 +190,7 @@ print('Please wait a moment for the results to appear.\n')
 result = GetSentiment(d)
 
 # Use the following line for debugging, validation.
-#print(json.dumps(json.loads(result), indent=4))
+# print(json.dumps(json.loads(result), indent=4))
 
 # Bring JSON into pandas dataframe
 from pandas.io.json import json_normalize
@@ -199,7 +199,7 @@ datajson = json_normalize(datajson['documents'])
 
 # Save to csv for later use
 datajson.to_csv('/Users/pacoc/data_out/dataframeSentiment_2ndround.csv')
-
+	
 # Merge with reviews and save
 sentiment = pd.Series(datajson['score'])
 reviews = pd.read_csv('/Users/pacoc/data_out/auto_sample_1000_nostrcast.csv')
