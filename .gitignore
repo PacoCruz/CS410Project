@@ -6,6 +6,7 @@
 .idea/vcs.xml
 .idea/workspace.xml
 .idea/other.xml
-*.csv
 gzip_data/.DS_Store
 .DS_Store
+data_out/all_features_with_sentiment_merge.csv
+temp_files/original_merge.csv
