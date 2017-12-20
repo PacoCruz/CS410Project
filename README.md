@@ -132,12 +132,17 @@ with ix.searcher() as s:
 Other areas for of discovery using `whoosh` were the ability of filtering results and applying facets to collapse/group results. I will continue my learning in this area to better apply the topics discovered in class.
 
 ### 2. Azure Cognitive Services - Text Sentiment Analysis
+
 Before using `NLTK` I performed some sentiment analysis on samples of the dataset using Microsoft's Azure Cognitive Services API. While I finally decided  not to use it for this project due to being a commercial service with a significant cost for the size of the datasets used in this project, I was able to use its Free Tier offer for practice.
 
 The services include AI services for Vision, Knowledge, Speech, or Language among other options. In particular, for Language includes a Linguistic Analysis API that I didn't explore, and a [Text Analytics](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/) API through a REST API, is able to analyze a text and to provide:
+
 - **Sentiment Analysis**: The Sentiment Analysis API evaluates text input and returns a sentiment score for each document, ranging from 0 (negative) to 1 (positive). This capability is useful for detecting positive and negative sentiment in social media, customer reviews, and discussion forums. Models and training data are provided by the service.
+
 - **Key Phrase Extraction**: The Key Phrase Extraction API evaluates unstructured text, and for each JSON document, returns a list of key phrases. This capability is useful to quickly identify the main points in a collection of documents.
+
 - **Language Detection**: The Language Detection API evaluates text input and for each document returns language identifiers with a score indicating the strength of the analysis, recognizing up to 120 languages. The results of this analysis can be parsed to determine which language is used in the input document. The response also returns a score which reflects the confidence of the model (a value between 0 and 1).
+
 Using the Azure Sentiment Analyzer, I was able to annotate with sentiment a set of documents around 100 times faster than using VADER. A representative excerpt of the code I used follows below; it can be easily adapted to read the intermediate files created by the `amznreviews.py` module:
 
 ```python
